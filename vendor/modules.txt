@@ -1,0 +1,14 @@
+# github.com/go-yaml/yaml v2.1.0+incompatible
+github.com/go-yaml/yaml
+# github.com/golang/protobuf v1.3.2
+github.com/golang/protobuf/proto
+# github.com/pinguo/pgo2 v0.0.0-20191217084459-d44dfe3149bd
+github.com/pinguo/pgo2
+github.com/pinguo/pgo2/config
+github.com/pinguo/pgo2/core
+github.com/pinguo/pgo2/iface
+github.com/pinguo/pgo2/logs
+github.com/pinguo/pgo2/perror
+github.com/pinguo/pgo2/render
+github.com/pinguo/pgo2/util
+github.com/pinguo/pgo2/validate
