@@ -1,0 +1,4 @@
+.idea
+runtime
+bin
+go.sum
