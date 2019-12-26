@@ -21,9 +21,9 @@ type IObject interface {
 	SetContext(ctx IContext)
 	Context() IContext
 	GetObj(obj IObject) IObject
-	GetObjPool(funcName IObjPoolFunc, params ...interface{}) IObject
+	GetObjPool(className string, funcName IObjPoolFunc, params ...interface{}) IObject
 	GetObjSingle(name string, funcName IObjSingleFunc, params ...interface{}) IObject
-	GetObjPoolCtx(ctr IContext, funcName IObjPoolFunc, params ...interface{}) IObject
+	GetObjPoolCtx(ctr IContext, className string, funcName IObjPoolFunc, params ...interface{}) IObject
 	GetObjCtx(ctx IContext, obj IObject) IObject
 	GetObjSingleCtx(ctx IContext, name string, funcName IObjSingleFunc, params ...interface{}) IObject
 }
@@ -31,7 +31,7 @@ type IObject interface {
 type IController interface {
 	BeforeAction(action string)
 	AfterAction(action string)
-	HandlePanic(v interface{})
+	HandlePanic(v interface{}, debug bool)
 }
 
 type IPlugin interface {
@@ -73,7 +73,7 @@ type IView interface {
 }
 
 type IContext interface {
-	HttpRW(enableAccessLog bool, r *http.Request, w http.ResponseWriter)
+	HttpRW(debug, enableAccessLog bool, r *http.Request, w http.ResponseWriter)
 	Process(plugins []IPlugin)
 	Notice(format string, v ...interface{})
 	Debug(format string, v ...interface{})
@@ -135,6 +135,6 @@ type IContext interface {
 	ProfileString() string
 }
 
-type IObjPoolFunc func(ctr IContext, params ...interface{}) IObject
+type IObjPoolFunc func(obj IObject, params ...interface{}) IObject
 type IObjSingleFunc func(params ...interface{}) IObject
 type IComponentFunc func(config map[string]interface{}) (interface{}, error)

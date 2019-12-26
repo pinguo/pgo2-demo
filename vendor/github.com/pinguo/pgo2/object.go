@@ -21,31 +21,32 @@ func (o *Object) SetContext(ctx iface.IContext) {
 
 // GetObject create new object
 func (o *Object) GetObj(obj iface.IObject) iface.IObject {
-	obj.SetContext(o.Context())
-	return obj
+	return o.GetObjCtx(o.Context(), obj)
 }
 
 // GetObjPool Get Object from pool
-func (o *Object) GetObjPool(funcName iface.IObjPoolFunc, params ...interface{}) iface.IObject {
-	return funcName(o.Context(), params...)
+func (o *Object) GetObjPool(className string, funcName iface.IObjPoolFunc, params ...interface{}) iface.IObject {
+	return o.GetObjPoolCtx(o.Context(), className, funcName, params...)
 }
 
 // GetObject Get single object
 func (o *Object) GetObjSingle(name string, funcName iface.IObjSingleFunc, params ...interface{}) iface.IObject {
-	// obj := funcName(params...)
-	obj := App().GetObjSingle(name, funcName, params...)
-	obj.SetContext(o.Context())
-	return obj
-}
-
-// GetObjPoolCtx Get Object from pool and new Context
-func (o *Object) GetObjPoolCtx(ctx iface.IContext, funcName iface.IObjPoolFunc, params ...interface{}) iface.IObject {
-	return funcName(ctx, params...)
+	return o.GetObjSingleCtx(o.Context(), name, funcName, params...)
 }
 
 // GetObject create new object  and new Context
 func (o *Object) GetObjCtx(ctx iface.IContext, obj iface.IObject) iface.IObject {
 	obj.SetContext(ctx)
+	return obj
+}
+
+// GetObjPoolCtx Get Object from pool and new Context
+func (o *Object) GetObjPoolCtx(ctx iface.IContext, className string, funcName iface.IObjPoolFunc, params ...interface{}) iface.IObject {
+	obj := App().GetObjPool(className, ctx)
+
+	if funcName != nil {
+		return funcName(obj, params...)
+	}
 	return obj
 }
 
