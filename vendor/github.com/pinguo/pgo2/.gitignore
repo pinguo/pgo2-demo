@@ -1,5 +1,0 @@
-.idea/
-bin/*
-!bin/*.sh
-runtime/
-go.sum
