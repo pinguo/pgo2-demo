@@ -4,6 +4,8 @@ import (
 	"flag"
 	"fmt"
 
+	"pgo2-demo/pkg/service"
+
 	"github.com/pinguo/pgo2"
 )
 
@@ -17,4 +19,8 @@ func (t *TestCommand) ActionIndex() {
 	flag.Parse()
 	args := flag.Args()
 	fmt.Println("call in command/Test.Index, name:", *name, "args:", args)
+}
+
+func (t *TestCommand) ActionDemo(){
+	t.GetObj(service.NewDemo()).(*service.Demo).Index()
 }
