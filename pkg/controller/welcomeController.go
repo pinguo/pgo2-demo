@@ -89,12 +89,12 @@ func (w *WelcomeController) ActionRegexpExample(p1, p2 string) {
     w.Json(data, http.StatusOK)
 }
 
-// RESTFULL动作，url中没有指定动作名，使用请求方法作为动作的名称(需要大写)
-// 例如：GET方法请求ActionGET(), POST方法请求ActionPOST()
-//func (w *WelcomeController) ActionGET() {
-//    fmt.Println("call in Controller/WelcomeController.GET")
-//}
-//
-//func (w *WelcomeController) ActionPOST() {
-//
-//}
+RESTful动作，url中没有指定动作名，使用请求方法作为动作的名称(需要大写)
+例如：GET方法请求GET(), POST方法请求POST()
+func (w *WelcomeController) GET() {
+   fmt.Println("call in Controller/WelcomeController.GET")
+}
+
+func (w *WelcomeController) POST() {
+
+}
