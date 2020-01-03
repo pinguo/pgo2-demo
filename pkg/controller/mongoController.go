@@ -81,7 +81,7 @@ func (m *MongoController) ActionQuery() {
     fmt.Println("query one f1==val1:", v1, err)
 
     // 查询单个文档(结果类型为map)
-    var v2 pgo2.Map
+    var v2 map[string]interface{}
     err = mongo.FindOne(bson.M{"f1": "val2"}, &v2)
     fmt.Println("query one f1==val2:", v2, err)
 
@@ -96,7 +96,7 @@ func (m *MongoController) ActionQuery() {
     fmt.Println("query one f1==val3:", v3, err)
 
     // 查询多个文档(指定结果为map)
-    var docs []pgo2.Map
+    var docs []map[string]interface{}
     err = mongo.FindAll(bson.M{"f3": bson.M{"$gte": 6}}, &docs)
     fmt.Println("query all f3>=6:", docs, err)
 }

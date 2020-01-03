@@ -55,7 +55,7 @@ func (m *MemcacheController) ActionGet() {
 
     // 获取序列化的数据
     if val := mc.Get("test_key3"); val != nil {
-        var data pgo2.Map
+        var data map[string]interface{}
         val.Decode(&data)
         fmt.Println("value of test_key3:", data)
     }
