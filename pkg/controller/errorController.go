@@ -17,5 +17,22 @@ type ErrorController struct {
 
 // 此函数必须有 ErrorController 遵循接口iface.IErrorController
 func (e *ErrorController) Error(status int , message string){
-	e.Json(pgo2.EmptyObject,status, "Controller.Error " + message)
+	// e.Json(pgo2.EmptyObject,status, "Controller.Error " + message)
+	// 可扩展
+	switch status {
+	case 404:
+		e.error404(message)
+	default:
+		e.other(status,message)
+	}
+}
+
+func (e *ErrorController) error404(message string){
+	e.Json(pgo2.EmptyObject,404, "Controller.error404 " + message)
+	// e.View("404.html",message)
+}
+
+func (e *ErrorController) other(status int, message string){
+	e.Json(pgo2.EmptyObject,status, "Controller.other " + message)
+	// e.View("other.html",message)
 }

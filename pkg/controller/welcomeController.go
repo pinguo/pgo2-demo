@@ -13,6 +13,11 @@ type WelcomeController struct {
     pgo2.Controller
 }
 
+// 预处理函数，控制器初始化的时候可以执行
+func (w *WelcomeController) Prepare(){
+
+}
+
 // curl -v http://127.0.0.1:8000/welcome/index
 // 默认动作(index)
 func (w *WelcomeController) ActionIndex() {
