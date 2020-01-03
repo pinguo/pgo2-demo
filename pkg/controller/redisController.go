@@ -59,7 +59,7 @@ func (r *RedisController) ActionGet() {
 
     // 获取序列化的数据
     if val := redis.Get("test_key3"); val != nil {
-        var data pgo2.Map
+        var data map[string]interface{}
         val.Decode(&data)
         fmt.Println("value of test_key3:", data)
     }
