@@ -19,9 +19,8 @@ func (w *WelcomeController) Prepare(){
 }
 
 // curl -v http://127.0.0.1:8000/welcome/index
-// 默认动作(index)
 func (w *WelcomeController) ActionIndex() {
-    w.Json("hello world", http.StatusOK)
+    w.Json("hello world ActionIndex", http.StatusOK)
 }
 
 // curl -v http://127.0.0.1:8000/welcome/view
