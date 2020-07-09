@@ -100,7 +100,7 @@ func (m *MysqlController) ActionQuery() {
 }
 
 // curl -v http://127.0.0.1:8000/mysql/prepare
-// 使用db.Prepare/db.PrepareContext来执行批量操作，默认查询操作在
+// 使用db.PrepareSql/db.PrepareContext来执行批量操作，默认查询操作在
 // 从库上进行，其余操作在主库上进行，若当前db对象有过其它操作，则查询
 // 操作会复用之前的连接。
 func (m *MysqlController) ActionPrepare() {
@@ -108,7 +108,7 @@ func (m *MysqlController) ActionPrepare() {
     db := m.GetObj(adapter.NewDb()).(*adapter.Db)
 
     query := "INSERT INTO test1 (name, age) VALUES (?, ?)"
-    stmt := db.Prepare(query)
+    stmt := db.PrepareSql(query)
     defer stmt.Close()
 
     for i := 0; i < 10; i++ {
