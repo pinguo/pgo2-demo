@@ -4,7 +4,6 @@ import (
     "fmt"
 
     "github.com/pinguo/pgo2"
-    "github.com/pinguo/pgo2/iface"
 )
 
 // 提供给调用NewWelcomePool的时候使用
@@ -25,13 +24,10 @@ func NewWelcome() *Welcome{
     return &Welcome{id:"NewWelcome-id"}
 }
 
-// 获取对象池对象
-func NewWelcomePool(iObj iface.IObject, params ...interface{}) iface.IObject {
-
-    obj := iObj.(*Welcome)
-    obj.id = params[0].(string)
-    fmt.Printf("call in service/NewWelcomePool set name"+obj.id+"\n")
-    return obj
+// 通过GetObjBox时自动调用
+func (w *Welcome) Prepare(id string){
+    w.id = id
+    fmt.Printf("call in service/Prepare set name"+w.id+"\n")
 }
 
 func (w *Welcome) SayHello(name string, age int, sex string) {

@@ -77,7 +77,7 @@ components:
     # 驱动名(需导入指定的驱动包)
     driver:      "mysql"
     # 主库地址(参见各驱动包说明)
-    dsn:         "root:@tcp(127.0.0.1:3306)/ybtestdb?charset=utf8&timeout=1s"
+    dsn:         "root:root@tcp(127.0.0.1:3306)/ybtestdb?charset=utf8&timeout=1s"
     # 从库地址(可选，默认空)
     # slaves: ["slave1 dsn", "slave2 dsn"]
     # 最大空闲连接数(默认5)
@@ -86,6 +86,15 @@ components:
     # maxConnTime: "1h"
     # 慢日志最小时间(默认100ms)
     # slowLogTime: "100ms"
+  orm:
+    # 驱动名(需导入指定的驱动包)
+    driver:      "mysql"
+    # 主库地址(参见各驱动包说明)
+    dsn:         "root:root@tcp(127.0.0.1:3306)/ybtestdb?charset=utf8&timeout=1s"
+    # Silent:1 Error:2  Warn:3 Info:4
+    logLevel: 4
+    #  使用单数表名，启用该选项，此时，`User` 的表名应该是 `user`
+    singularTable: true
 
   maxMind:
     # 国家数据文件(只包含国家数据，文件5M左右)

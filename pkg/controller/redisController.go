@@ -45,7 +45,7 @@ func (r *RedisController) ActionSet() {
 // curl -v http://127.0.0.1:8000/redis/get
 func (r *RedisController) ActionGet() {
     // 对象池获取redis的上下文适配对象
-    redis := r.GetObjPool(adapter.RedisClass, adapter.NewRedisPool).(*adapter.Redis)
+    redis := r.GetObjBox(adapter.RedisClass).(*adapter.Redis)
 
     // 获取string
     if val := redis.Get("test_key1"); val != nil {

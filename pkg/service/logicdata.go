@@ -31,19 +31,16 @@ func (l *LogicData1) Show(){
 	fmt.Println("LogicData1 show data:" + l.data)
 }
 
-// 定义对象池初始化函数需要遵循iface.IObjPoolFunc 接口
-func NewLogicDataPool(iObj iface.IObject, params ...interface{}) iface.IObject{
-	obj := iObj.(*LogicData2)
-	if len(params)>0 {
-		obj.data = params[0].(string)
-	}
-
-	return obj
-}
-
 type LogicData2 struct {
 	pgo2.Object
 	data string
+}
+
+// 通过GetObjBox时自动调用
+func (l *LogicData2) Prepare( params ...string){
+	if len(params)>0 {
+		l.data = params[0]
+	}
 }
 
 func (l *LogicData2) Show(){
@@ -91,13 +88,13 @@ func (d *Demo) Index(){
 	l0.Show()
 
 	// 从对象池获取对象并注入上下文
-	l1 := d.GetObjPool(LogicData1Class, nil).(*LogicData1)
+	l1 := d.GetObjBox(LogicData1Class).(*LogicData1)
 	l1.Show()
 	// 从对象池获取对象并注入上下文,并初始化函数
-	l2 := d.GetObjPool(LogicData2Class, NewLogicDataPool).(*LogicData2)
+	l2 := d.GetObjBox(LogicData2Class).(*LogicData2)
 	l2.Show()
 	// 从对象池获取对象并注入上下文,并初始化函数
-	l3 := d.GetObjPoolCtx(d.Context().Copy(), LogicData2Class, NewLogicDataPool).(*LogicData2)
+	l3 := d.GetObjBoxCtx(d.Context().Copy(), LogicData2Class).(*LogicData2)
 	l3.Show()
 
 	// 获取单例对象并注入上下文

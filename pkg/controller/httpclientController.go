@@ -53,7 +53,7 @@ func (h *HttpClientController) ActionSendQuery() {
 // curl -v http://127.0.0.1:8000/http-client/send-form
 func (h *HttpClientController) ActionSendForm() {
     // 从对象池获取http的上下文适配对象
-    httpClient := h.GetObjPool(adapter.HttpClass, adapter.NewHttpPool).(*adapter.Http)
+    httpClient := h.GetObjBox(adapter.HttpClass).(*adapter.Http)
 
     // 发送POST请求
     url := "http://127.0.0.1:8000/welcome/index"
@@ -103,7 +103,7 @@ func (h *HttpClientController) ActionMultiRequest() {
     // 获取http的上下文适配对象
     newCtx := h.Context().Copy()
     defer newCtx.FinishGoLog() // 刷新新上下文的日志
-    httpClient := h.GetObjPoolCtx(newCtx,adapter.HttpClass,adapter.NewHttpPool ).(*adapter.Http)
+    httpClient := h.GetObjBoxCtx(newCtx,adapter.HttpClass).(*adapter.Http)
 
     req1, _ := http.NewRequest("GET", "http://127.0.0.1:8000/welcome/index", nil)
     req2, _ := http.NewRequest("GET", "http://127.0.0.1:8000/welcome/index", nil)

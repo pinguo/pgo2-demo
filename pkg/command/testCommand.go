@@ -14,6 +14,7 @@ type TestCommand struct {
 }
 
 // pgo2-demo --env=docker --cmd=test/index --name=cutomeName
+// @ActionDesc 简单的脚本描述
 func (t *TestCommand) ActionIndex() {
 	name := flag.String("name", "", " --name=xxxx")
 	flag.Parse()

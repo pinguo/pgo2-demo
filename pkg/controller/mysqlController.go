@@ -63,7 +63,7 @@ func (m *MysqlController) ActionExec() {
 func (m *MysqlController) ActionQuery() {
 
     // 对象池获取db的上下文适配对象
-    db := m.GetObjPool(adapter.DbClass, adapter.NewDbPool).(*adapter.Db)
+    db := m.GetObjBox(adapter.DbClass).(*adapter.Db)
 
     // 执行插入操作
     age := (time.Now().Nanosecond() / 1000) % 100
