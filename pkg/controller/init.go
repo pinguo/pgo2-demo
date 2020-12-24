@@ -14,7 +14,7 @@ func init() {
 
     // 注册控制器到PGO容器中
     container.Bind(&TestController{})
-    container.Bind(&WelcomeController{})
+    container.Bind(&Welcome{})
     container.Bind(&MysqlController{})
     container.Bind(&HttpClientController{})
     container.Bind(&MaxMindController{})
@@ -22,6 +22,8 @@ func init() {
     container.Bind(&MemoryController{})
     container.Bind(&MongoController{})
     container.Bind(&RedisController{})
+    container.Bind(&Mongodb{})
+    container.Bind(&Orm{})
 
     // 注册其它控制器(包含子包)
 }

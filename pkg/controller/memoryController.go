@@ -41,7 +41,7 @@ func (m *MemoryController) ActionSet() {
 // curl -v http://127.0.0.1:8000/memory/get
 func (m *MemoryController) ActionGet() {
     // 从对象池获取memory的上下文适配对象
-    mm := m.GetObjPool(adapter.MemoryClass, adapter.NewMemoryPool).(*adapter.Memory)
+    mm := m.GetObjBox(adapter.MemoryClass).(*adapter.Memory)
 
     // 获取string
     if val := mm.Get("test_key1"); val != nil {

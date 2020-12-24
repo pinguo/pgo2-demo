@@ -19,7 +19,7 @@ func (m *MaxMindController) ActionGeoByIp() {
     // 获取MaxMind的上下文件适配对象
     // mmd := m.GetObj(adapter.NewMaxMind()).(*adapter.MaxMind)
     // 从对象池获取MaxMind的上下文件适配对象
-    mmd := m.GetObjPool(adapter.MaxMindClass, adapter.NewMaxMindPool).(*adapter.MaxMind)
+    mmd := m.GetObjBox(adapter.MaxMindClass).(*adapter.MaxMind)
 
     // 解析IP的geo信息
     geo := mmd.GeoByIp(ip)

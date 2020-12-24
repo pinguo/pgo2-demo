@@ -7,7 +7,7 @@ import (
     "github.com/pinguo/pgo2"
     "github.com/pinguo/pgo2/adapter"
 )
-
+// 已弃用 推荐使用mongodb
 type MongoController struct {
     pgo2.Controller
 }
@@ -49,7 +49,7 @@ func (m *MongoController) ActionInsert() {
 // curl -v http://127.0.0.1:8000/mongo/update
 func (m *MongoController) ActionUpdate() {
     // 对象池获取mongo的上下文适配对象
-    mongo := m.GetObjPool(adapter.MongoClass, adapter.NewMongoPool, "test", "test").(*adapter.Mongo)
+    mongo := m.GetObjBox(adapter.MongoClass, "test", "test").(*adapter.Mongo)
 
     // 更新单个文档
     query := bson.M{"f1": "val1"}

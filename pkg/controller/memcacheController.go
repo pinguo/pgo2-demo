@@ -41,7 +41,7 @@ func (m *MemcacheController) ActionSet() {
 // curl -v http://127.0.0.1:8000/memcache/get
 func (m *MemcacheController) ActionGet() {
     // 对象池获取memcache的上下文适配对象
-    mc := m.GetObjPool(adapter.MemCacheClass,adapter.NewMemCachePool).(*adapter.MemCache)
+    mc := m.GetObjBox(adapter.MemCacheClass).(*adapter.MemCache)
 
     // 获取string
     if val := mc.Get("test_key1"); val != nil {
